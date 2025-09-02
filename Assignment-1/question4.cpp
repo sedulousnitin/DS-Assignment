@@ -10,8 +10,6 @@ int main() {
     cout << "Enter " << n << " elements: ";
     for (int i = 0; i < n; i++)
         cin >> arr[i];
-
-    // Reverse logic
     for (int i = 0; i < n / 2; i++) {
         int temp = arr[i];
         arr[i] = arr[n - i - 1];
