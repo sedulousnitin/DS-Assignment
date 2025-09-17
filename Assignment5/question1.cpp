@@ -58,7 +58,7 @@ public:
         Node* temp = head;
         head = head->next;
         delete temp;
-    }
+    } 
 
     void deleteFromEnd() {
         if (!head) return;
@@ -87,3 +87,4 @@ public:
             Node* toDelete = temp->next;
             temp->next = temp->next->next;
             delete toDelete
+        }
