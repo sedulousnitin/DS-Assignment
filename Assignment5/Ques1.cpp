@@ -16,7 +16,7 @@ public:
     void insertAtBeginning(int val) {
         Node* n = new Node(val);
         n->next = head;
-        head = n;
+        head = n; 
     }
 
     void insertAtEnd(int val) {
