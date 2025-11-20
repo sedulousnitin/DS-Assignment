@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+class sortingalgo {
+public :
 void bubblesort(vector<int>& arr) {
     int n = arr.size();
-    for(int i = 0;i < n-1;i++) {
-        for(int j = 0; j < n-i-1; j++) {
+    for(int i = n-1 ;i >=1; i--) {
+        for(int j = 0; j < i-1; j++) {
             if(arr[j] > arr[j+1]) {
                 swap(arr[j], arr[j+1]);
             }
@@ -13,9 +14,9 @@ void bubblesort(vector<int>& arr) {
 }
 void selectionsort(vector<int>& arr) {
     int n = arr.size();
-    for(int i = 0; i < n-1; i++) {
+    for(int i = 0; i < n-2; i++) {
         int minindex = i;
-        for(int j = i+1; j < n; j++) {
+        for(int j = i; j < n-1; j++) {
             if(arr[j] < arr[minindex]) {
                 minindex = j;
             }
@@ -24,27 +25,65 @@ void selectionsort(vector<int>& arr) {
     }
 }
 
-void merge(vector<int>& arr, int l, int mid, int r) {
-    vector<int> temp;
-    int i = l, j = mid+1;
 
-    while(i <= mid && j <= r) {
-        if(arr[i] < arr[j]) temp.push_back(arr[i++]);
-        else temp.push_back(arr[j++]);
+
+void merge(vector<int>& arr, int low, int mid, int high) {
+        vector<int> temp;
+        int left = low, right = mid + 1;
+        while (left <= mid && right <= high) {
+            if (arr[left] <= arr[right])
+                temp.push_back(arr[left++]);
+            else
+                temp.push_back(arr[right++]);
+        }
+        while (left <= mid)
+            temp.push_back(arr[left++]);
+        while (right <= high)
+            temp.push_back(arr[right++]);
+        for (int i = low; i <= high; i++)
+            arr[i] = temp[i - low];
     }
-    while(i <= mid) temp.push_back(arr[i++]);
-    while(j <= r) temp.push_back(arr[j++]);
-
-    for(int k = l; k <= r; k++) arr[k] = temp[k-l];
+    void mergeSort(vector<int>& arr, int low, int high) {
+        if (low >= high)
+            return;
+        int mid = (low + high) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+    }
 }
 
-void mergeSort(vector<int>& arr, int l, int r) {
-    if(l >= r) return;
-    int mid = l + (r-l)/2;
-    mergeSort(arr, l, mid);
-    mergeSort(arr, mid+1, r);
-    merge(arr, l, mid, r);
-}
 
+
+void insertionsort(vector<int>& arr){
+    int n = arr.size();
+for (int i =0 ; i <= n-1 ; i++){
+j =i;
+while( j > 0 && a[j-1] > a[j]){
+swap ( a[j-1] , a[j])
+    j--
+    }}
+
+void quickSort(vector<int>& arr, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(arr, low, high);
+            quickSort(arr, low, pivotIndex - 1);
+
+            quickSort(arr, pivotIndex + 1, high);
+        }
+    }
+    int partition(vector<int>& arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swap(arr[i], arr[j]);
+            }
+        }
+        swap(arr[i + 1], arr[high]);
+        return i + 1;
+    }
+};
 
 
